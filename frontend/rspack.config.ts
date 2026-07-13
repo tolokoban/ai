@@ -48,6 +48,7 @@ export default defineConfig({
 		static: path.resolve(__dirname, "public"),
 		devMiddleware: { writeToDisk: true },
 	},
+	lazyCompilation: false,
 	plugins: [
 		{
 			apply(compiler: Compiler) {

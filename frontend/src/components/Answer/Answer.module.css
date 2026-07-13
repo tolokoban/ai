@@ -1,3 +1,7 @@
 .answer {
-    
+
+    a,
+    a:visited {
+        color: var(--theme-color-primary-5);
+    }
 }

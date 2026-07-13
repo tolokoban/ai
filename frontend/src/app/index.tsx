@@ -17,18 +17,20 @@ export * from "./routes"
 export * from "./types"
 
 
-import Layout0 from "./layout"
 import NotFound0 from "./404"
 const Page0 = React.lazy(() => import("./page"))
+const Page1 = React.lazy(() => import("./keys/page"))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function App({ lang }: { lang?: string }) {
     const context = useRouteContext()
     const fb = <div>Loading...</div>
-    const ly0 = Layout0
     const pg0 = Page0
+    const pg1 = Page1
     return (
-        <Route path="/" Page={pg0} Layout={ly0} NotFound={NotFound0} fallback={fb} context={context}/>
+        <Route path="/" Page={pg0} NotFound={NotFound0} fallback={fb} context={context}>
+            <Route path="/keys" Page={pg1} NotFound={NotFound0} fallback={fb} context={context}/>
+        </Route>
     )
 }
 
