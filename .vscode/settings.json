@@ -1,0 +1,22 @@
+{
+	"terminal.integrated.env.linux": {
+		"PATH": "/home/tolokoban/.volta/bin:${env:PATH}"
+	},
+	"oxc.lint.enable": true,
+	"oxc.lint.binPath": "./node_modules/.bin/oxlint",
+	"oxc.lint.nodePath": "/home/tolokoban/.volta/bin/node",
+	"oxc_formatter.binPath": "./node_modules/.bin/oxfmt",
+	"[typescript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "nicolo-ribaudo.vscode-oxc-fmt"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "nicolo-ribaudo.vscode-oxc-fmt"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "nicolo-ribaudo.vscode-oxc-fmt"
+	},
+	"editor.formatOnSave": true
+}
