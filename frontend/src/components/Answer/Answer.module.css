@@ -5,3 +5,22 @@
         color: var(--theme-color-primary-5);
     }
 }
+
+.error {
+    white-space: pre-wrap;
+    max-width: 800px;
+}
+
+.tokens {
+    font-size: 80%;
+    background: var(--theme-color-neutral-1);
+    color: var(--theme-color-on-neutral-1);
+    margin-bottom: 1em;
+}
+
+.answer {
+    background: var(--theme-color-secondary-5);
+    color: var(--theme-color-on-secondary-5);
+    padding: .5em;
+    border-radius: .25em;
+}

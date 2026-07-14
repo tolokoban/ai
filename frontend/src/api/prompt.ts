@@ -1,28 +1,26 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { APICallError, generateText, type LanguageModel, RetryError, tool } from "ai";
+import { APICallError, type LanguageModel, RetryError, tool, ToolLoopAgent } from "ai";
+import { z } from "zod";
+
 import { State } from "../state";
 import type { AiProvider, PromptOptions } from "./types";
+import { toolCurrentGeolocation } from "../tools/current-geolocation";
+import { toolDistance } from "../tools/distance/distance";
+import { toolSearchLocation, toolSearchLocationReverse } from "../tools/search-location";
 
-export async function prompt(
-  input: string,
-  options: PromptOptions,
-): Promise<
+export type PromptResponse =
   | { text: string; tokens: { input: number; output: number }; error?: undefined }
-  | { error: Error; text?: undefined; tokens?: undefined }
-> {
+  | { error: Error; text?: undefined; tokens?: undefined };
+
+export async function prompt(input: string, options: PromptOptions): Promise<PromptResponse> {
   try {
-    const model = getGenerativeAI(options);
-    const { text, usage } = await generateText({
-      model,
+    State.tools.value = [];
+    const agent = getAgent(options);
+    const response = await agent.generate({
       prompt: input,
-      tools: {
-        // weather: tool({
-        // 	description: "Get the weather in a location",
-        // 	parameters: z.object({ location: z.string() }),
-        // 	execute: async ({ location }) => ({ temp: 72, location }),
-        // }),
-      },
     });
+    console.log("🐞 [prompt@29] response =", response); // @FIXME: Remove this line written on 2026-07-14 at 11:47
+    const { text, usage } = response;
     return {
       text,
       tokens: {
@@ -41,6 +39,20 @@ export async function prompt(
     }
     return { error: ensureError(error) };
   }
+}
+
+function getAgent(options: PromptOptions) {
+  const model = getGenerativeAI(options);
+  const agent = new ToolLoopAgent({
+    model,
+    tools: {
+      currentGeolocation: tool(toolCurrentGeolocation),
+      distance: tool(toolDistance),
+      searchLocation: tool(toolSearchLocation),
+      searchLocationReverse: tool(toolSearchLocationReverse),
+    },
+  });
+  return agent;
 }
 
 function getGenerativeAI(options: PromptOptions): LanguageModel {

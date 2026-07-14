@@ -6,27 +6,23 @@ import Prompt from "../components/Prompt";
 import * as styles from "./page.module.css";
 import { makeGoto } from "./routes";
 import { State } from "../state";
+import { PromptResponse } from "../api/prompt";
+import Tools from "../components/Tools";
 
 export default function App() {
   const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<string | undefined>(undefined);
   const [prompt, setPrompt] = React.useState<string | undefined>(undefined);
-  const [answer, setAnswer] = React.useState<string | undefined>(undefined);
+  const [answer, setAnswer] = React.useState<PromptResponse | undefined>(undefined);
   const handleSend = async (prompt: string) => {
     setLoading(true);
     setAnswer(undefined);
     setPrompt(undefined);
-    setError(undefined);
     const response = await Api.prompt(prompt, {
       provider: "google",
       model: "gemini-3.1-flash-lite",
     });
     setLoading(false);
-    if (response.error) {
-      setError(response.error.message);
-    } else {
-      setAnswer(response.text);
-    }
+    setAnswer(response);
   };
   const keyGoogle = State.ai.providers.google.key.useValue();
 
@@ -41,13 +37,15 @@ export default function App() {
 
   return (
     <div className={styles.root}>
+      <Tools />
       {prompt && <blockquote>{prompt}</blockquote>}
       {loading && <ViewSpinner>Waiting for response...</ViewSpinner>}
       {!loading && answer && <Answer value={answer} />}
-      {!loading && error && <ViewPanel color="error">{error}</ViewPanel>}
-      <ViewLabel value="What do you need?" fullwidth box="none" padding="M">
-        <Prompt onSend={handleSend} />
-      </ViewLabel>
+      {!loading && (
+        <ViewLabel value="What do you need?" fullwidth box="none" padding="M">
+          <Prompt onSend={handleSend} />
+        </ViewLabel>
+      )}
     </div>
   );
 }

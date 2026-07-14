@@ -1,11 +1,33 @@
 .prompt {
+    margin: 1em 0;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: var(--theme-color-neutral-6);
+    color: var(--theme-color-on-neutral-6);
+
     display: grid;
     grid-template-columns: 1fr auto;
     gap: .5em;
 
-    >input {
+    >textarea {
         field-sizing: content;
         border-radius: .25em;
         padding: 1em;
+        background-color: var(--theme-color-neutral-9);
+        color: var(--theme-color-on-neutral-9);
     }
+}
+
+div.recentButton {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+    margin: 1em 0;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: var(--theme-color-neutral-6);
+    color: var(--theme-color-on-neutral-6);
 }
