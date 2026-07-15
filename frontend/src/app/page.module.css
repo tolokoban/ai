@@ -1,4 +1,31 @@
 .root {
     font-family: sans-serif;
     padding: 1em;
+
+    >h1 {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0 1em;
+
+        >img {
+            width: 2em;
+            height: 2em;
+        }
+
+        >small {
+            font-size: 80%;
+            font-family: monospace;
+            border-radius: 999vmax;
+            padding: 0 .5em;
+            background: var(--theme-color-neutral-1);
+            color: var(--theme-color-on-neutral-1);
+        }
+
+        >button {
+            font-size: 1rem;
+        }
+    }
 }

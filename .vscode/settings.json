@@ -10,7 +10,7 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "nicolo-ribaudo.vscode-oxc-fmt"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[javascript]": {
 		"editor.defaultFormatter": "nicolo-ribaudo.vscode-oxc-fmt"

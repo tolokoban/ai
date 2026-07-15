@@ -7,6 +7,7 @@
 
     display: grid;
     grid-template-columns: 1fr auto;
+    place-items: start stretch;
     gap: .5em;
 
     >textarea {
@@ -25,9 +26,7 @@ div.recentButton {
     justify-content: flex-start;
     align-items: center;
     gap: 1em;
-    margin: 1em 0;
-    padding: .5em;
-    border-radius: .5em;
-    background-color: var(--theme-color-neutral-6);
-    color: var(--theme-color-on-neutral-6);
+    margin: 0;
+    background: none;
+    color: var(--theme-color-primary-5);
 }

@@ -1,11 +1,12 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createMistral } from "@ai-sdk/mistral";
+import { createDeepSeek } from "@ai-sdk/deepseek";
 import { APICallError, type LanguageModel, RetryError, tool, ToolLoopAgent } from "ai";
-import { z } from "zod";
 
 import { State } from "../state";
-import type { AiProvider, PromptOptions } from "./types";
+import type { PromptOptions } from "./types";
 import { toolCurrentGeolocation } from "../tools/current-geolocation";
-import { toolDistance } from "../tools/distance/distance";
+import { toolDistance } from "../tools/distance";
 import { toolSearchLocation, toolSearchLocationReverse } from "../tools/search-location";
 
 export type PromptResponse =
@@ -56,20 +57,14 @@ function getAgent(options: PromptOptions) {
 }
 
 function getGenerativeAI(options: PromptOptions): LanguageModel {
-  const { provider, model } = options;
-  const apiKey = getApiKey(provider);
+  const { provider, model, key: apiKey } = options;
   switch (provider) {
     case "google":
       return createGoogleGenerativeAI({ apiKey })(model);
-    default:
-      throw new Error(`Don't know this provider: "${provider}"!`);
-  }
-}
-
-function getApiKey(provider: AiProvider) {
-  switch (provider) {
-    case "google":
-      return State.ai.providers.google.key.value;
+    case "mistral":
+      return createMistral({ apiKey })(model);
+    case "deepseek":
+      return createDeepSeek({ apiKey })(model);
     default:
       throw new Error(`Don't know this provider: "${provider}"!`);
   }

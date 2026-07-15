@@ -43,7 +43,7 @@ export default function Prompt({ className, onSend }: PromptProps) {
             <ViewTouchable key={index} onClick={() => setPrompt(p)}>
               <div className={Styles.recentButton}>
                 <IconSend />
-                <p>{p}</p>
+                <div>{p}</div>
               </div>
             </ViewTouchable>
           ))}

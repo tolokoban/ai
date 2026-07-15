@@ -1,18 +1,32 @@
 import AtomicState from "@tolokoban/react-state";
 import { isString, isType } from "@tolokoban/type-guards";
 import { AiTool } from "../tools/types";
+import { AiProviderInfo, PROVIDERS } from "../constants/providers";
 
 export const State = {
   ai: {
+    getProviderInfo: (): AiProviderInfo | undefined => {
+      const provider = PROVIDERS.find((item) => item.id === State.ai.providers.default.value);
+      if (!provider) return undefined;
+      const key = State.ai.providers.keys.value[provider.id];
+      return key ? provider : undefined;
+    },
     providers: {
-      google: {
-        key: new AtomicState("", {
+      default: new AtomicState("mistral", {
+        storage: {
+          id: "ai/providers/default",
+          guard: isString,
+        },
+      }),
+      keys: new AtomicState(
+        {},
+        {
           storage: {
-            id: "ai/providers/gemini/key",
-            guard: isString,
+            id: "ai/providers/keys",
+            guard: isRecord,
           },
-        }),
-      },
+        },
+      ),
     },
   },
   recentPrompts: new AtomicState([], {
@@ -30,3 +44,7 @@ export const State = {
     }>
   >([]),
 };
+
+function isRecord(data: unknown): data is Record<string, string> {
+  return isType(data, ["map", "string"]);
+}

@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@ai-sdk/deepseek':
+        specifier: ^3.0.11
+        version: 3.0.11(zod@4.4.3)
       '@ai-sdk/google':
         specifier: ^4.0.12
         version: 4.0.12(zod@4.4.3)
+      '@ai-sdk/mistral':
+        specifier: ^4.0.11
+        version: 4.0.11(zod@4.4.3)
       '@tolokoban/react-state':
         specifier: ^0.8.0
         version: 0.8.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -18,8 +24,8 @@ importers:
         specifier: ^0.9.0
         version: 0.9.0
       '@tolokoban/ui':
-        specifier: ^0.25.4
-        version: 0.25.4(react@19.2.7)
+        specifier: file:../../../../@tolokoban/ui/
+        version: file:../../../../@tolokoban/ui(react@19.2.7)
       ai:
         specifier: ^7.0.22
         version: 7.0.22(zod@4.4.3)
@@ -75,6 +81,12 @@ importers:
 
 packages:
 
+  '@ai-sdk/deepseek@3.0.11':
+    resolution: {integrity: sha512-QhJTD6SAIAtdwsneKbkdsq6dL6KMJdnjUrA4jry/QAK4YQsLJw5Bw3CZLQhnU3L2IwtjAksr+qp1NY+gOI6Nfw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/gateway@4.0.16':
     resolution: {integrity: sha512-9iYxdOLquoOFk5e+02P9qfBIA+EJU0FNJvyjGxi4iXJabt2+GlbaCg7TX0sTtxOsBVkdabkatqWM6+kvp53tBg==}
     engines: {node: '>=22'}
@@ -83,6 +95,18 @@ packages:
 
   '@ai-sdk/google@4.0.12':
     resolution: {integrity: sha512-4Rw4viFwH2Wprx6OssZzhV/KgNWaA7qYr5Kg28AlZ7r3sEvyXH0kDZtZok7onPjr0RuFTg2EjCjTIeoCesg0Ww==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/mistral@4.0.11':
+    resolution: {integrity: sha512-qeFRc9Q+NqWVwWuHeE82F5VrO1udCS0YcEYpEHDhUKV0H5fE41y26EkHaViulr+Tr/t/gRXS4cnfbS6z3t0rcg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/provider-utils@5.0.10':
+    resolution: {integrity: sha512-uPyec0+85dwxZYXtb8qe8gCjhjDfxP4LCDo/uRQS/iG+FIgYbHPRhr/ys281udG90bTaE18+5cxWraYaf8oHCw==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -393,8 +417,8 @@ packages:
   '@tolokoban/type-guards@0.9.0':
     resolution: {integrity: sha512-MLOlLsGBrvol1yR25K/kai7/DoZtVYHmedRxKmjS8We7vwwas/9wyVvijAg0bcAucOSNOyWtviNikLkmvri9lQ==}
 
-  '@tolokoban/ui@0.25.4':
-    resolution: {integrity: sha512-fGl1UARFPEnBreZmkL+VSti33xAeS7xlPWhNXa7+VMmbKYe/MULGdm0+JZhmEAXCX6ep4RKJvBgKfRkZvs+hLw==}
+  '@tolokoban/ui@file:../../../../@tolokoban/ui':
+    resolution: {directory: ../../../../@tolokoban/ui, type: directory}
     peerDependencies:
       react: ^19.2.4
 
@@ -1340,6 +1364,12 @@ packages:
 
 snapshots:
 
+  '@ai-sdk/deepseek@3.0.11(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 4.0.3
+      '@ai-sdk/provider-utils': 5.0.10(zod@4.4.3)
+      zod: 4.4.3
+
   '@ai-sdk/gateway@4.0.16(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 4.0.3
@@ -1351,6 +1381,20 @@ snapshots:
     dependencies:
       '@ai-sdk/provider': 4.0.3
       '@ai-sdk/provider-utils': 5.0.7(zod@4.4.3)
+      zod: 4.4.3
+
+  '@ai-sdk/mistral@4.0.11(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 4.0.3
+      '@ai-sdk/provider-utils': 5.0.10(zod@4.4.3)
+      zod: 4.4.3
+
+  '@ai-sdk/provider-utils@5.0.10(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 4.0.3
+      '@standard-schema/spec': 1.1.0
+      '@workflow/serde': 4.1.0
+      eventsource-parser: 3.1.0
       zod: 4.4.3
 
   '@ai-sdk/provider-utils@5.0.7(zod@4.4.3)':
@@ -1578,7 +1622,7 @@ snapshots:
 
   '@tolokoban/type-guards@0.9.0': {}
 
-  '@tolokoban/ui@0.25.4(react@19.2.7)':
+  '@tolokoban/ui@file:../../../../@tolokoban/ui(react@19.2.7)':
     dependencies:
       json5: 2.2.3
       react: 19.2.7

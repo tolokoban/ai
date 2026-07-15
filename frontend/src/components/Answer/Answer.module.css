@@ -1,8 +1,29 @@
 .answer {
+    background: var(--theme-color-secondary-4);
+    color: var(--theme-color-on-secondary-4);
+    padding: .5em;
+    border-radius: .25em;
 
     a,
     a:visited {
         color: var(--theme-color-primary-5);
+    }
+
+    table {
+        border-collapse: collapse;
+        background-color: var(--theme-color-neutral-7);
+        color: var(--theme-color-on-neutral-7);
+
+        td,
+        th {
+            padding: .125em .25em;
+            border: 1px solid color-mix(in srgb, currentColor, transparent 50%)
+        }
+
+        th {
+            background-color: var(--theme-color-secondary-6);
+            color: var(--theme-color-on-secondary-6);
+        }
     }
 }
 
@@ -16,11 +37,4 @@
     background: var(--theme-color-neutral-1);
     color: var(--theme-color-on-neutral-1);
     margin-bottom: 1em;
-}
-
-.answer {
-    background: var(--theme-color-secondary-5);
-    color: var(--theme-color-on-secondary-5);
-    padding: .5em;
-    border-radius: .25em;
 }

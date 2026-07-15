@@ -9,10 +9,12 @@
         "test": "vitest"
     },
     "dependencies": {
+        "@ai-sdk/deepseek": "^3.0.11",
         "@ai-sdk/google": "^4.0.12",
+        "@ai-sdk/mistral": "^4.0.11",
         "@tolokoban/react-state": "^0.8.0",
         "@tolokoban/type-guards": "^0.9.0",
-        "@tolokoban/ui": "^0.25.4",
+        "@tolokoban/ui": "file:../../../../@tolokoban/ui/",
         "ai": "^7.0.22",
         "build-react-routes": "^0.11.1",
         "react": "^19.2.7",
