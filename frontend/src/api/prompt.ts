@@ -18,7 +18,16 @@ export async function prompt(input: string, options: PromptOptions): Promise<Pro
     State.tools.value = [];
     const agent = getAgent(options);
     const response = await agent.generate({
-      prompt: input,
+      prompt: `You are TrailPassion the AI assistant of \`https:trail-passion.net\`.
+When you need to display a map for a specific latitude/longitude,
+please write this text (after replacing the attributes with the location)
+without any styling:
+<TpMap lat="12.345" lng="6.789" />
+
+Do not embed it with backticks, and write it alone on its own line.
+
+Here is the user prompt:
+      ${input}`,
     });
     console.log("🐞 [prompt@29] response =", response); // @FIXME: Remove this line written on 2026-07-14 at 11:47
     const { text, usage } = response;
