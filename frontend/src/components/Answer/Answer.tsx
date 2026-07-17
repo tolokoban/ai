@@ -36,9 +36,11 @@ export default function Answer({ className, value }: AnswerProps) {
           rehypePlugins={[rehypeRaw]}
           components={{
             tpmap({ lat, lng }: { lat: string; lng: string }) {
+              const x = parseFloat(lng);
+              const y = parseFloat(lat);
               return (
                 <iframe
-                  src={`https://trail-passion.net/app/#/map`}
+                  src={`http://localhost:60000/app/?n=${y + 0.1}&s=${y - 0.1}&e=${x + 0.1}&w=${x - 0.1}`}
                   width={640}
                   height={480}
                 ></iframe>
