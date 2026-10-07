@@ -4,7 +4,7 @@ import { createDeepSeek } from "@ai-sdk/deepseek";
 import { APICallError, type LanguageModel, RetryError, tool, ToolLoopAgent } from "ai";
 
 import { State } from "../state";
-import type { PromptOptions } from "./types";
+import type { AgentOptions } from "./types";
 import { toolCurrentGeolocation } from "../tools/current-geolocation";
 import { toolDistance } from "../tools/distance";
 import { toolSearchLocation, toolSearchLocationReverse } from "../tools/search-location";
@@ -13,7 +13,7 @@ export type PromptResponse =
   | { text: string; tokens: { input: number; output: number }; error?: undefined }
   | { error: Error; text?: undefined; tokens?: undefined };
 
-export async function prompt(input: string, options: PromptOptions): Promise<PromptResponse> {
+export async function prompt(input: string, options: AgentOptions): Promise<PromptResponse> {
   try {
     State.tools.value = [];
     const agent = getAgent(options);
@@ -51,7 +51,7 @@ Here is the user prompt:
   }
 }
 
-function getAgent(options: PromptOptions) {
+function getAgent(options: AgentOptions) {
   const model = getGenerativeAI(options);
   const agent = new ToolLoopAgent({
     model,
@@ -65,7 +65,7 @@ function getAgent(options: PromptOptions) {
   return agent;
 }
 
-function getGenerativeAI(options: PromptOptions): LanguageModel {
+function getGenerativeAI(options: AgentOptions): LanguageModel {
   const { provider, model, key: apiKey } = options;
   switch (provider) {
     case "google":
